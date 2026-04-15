@@ -44,9 +44,16 @@ pool.query('SELECT NOW()')
   .catch(e => console.error('❌ Database error:', e.message));
 
 // ── FILE UPLOADS ────────────────────────────────────────────
-// On Render, we set UPLOADS_DIR to /uploads to use the Persistent Disk
+// On Render, set UPLOADS_DIR to data/uploads to use the Persistent Disk
 const uploadsDir = process.env.UPLOADS_DIR || path.join(__dirname, 'uploads');
-if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir, { recursive: true });
+try {
+  if (!fs.existsSync(uploadsDir)) {
+    fs.mkdirSync(uploadsDir, { recursive: true });
+    console.log('📁 Uploads directory initialized at:', uploadsDir);
+  }
+} catch (e) {
+  console.warn('⚠️ Note: Uploads directory check skipped or handles by persistent disk mount.');
+}
 
 const upload = multer({
   storage: multer.diskStorage({
