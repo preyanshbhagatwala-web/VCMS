@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VCMS Pro — Sign In</title>
+<link rel="stylesheet" href="css/styles.css">
+<style>
+body{overflow:hidden;}
+.auth-page{grid-template-columns:1.15fr 0.85fr;}
+.auth-right{padding:36px 56px;background:rgba(13,8,32,.5);backdrop-filter:blur(28px);}
+[data-theme="light"] .auth-right{background:rgba(245,240,255,.78);}
+.auth-box{max-width:500px;}
+.auth-heading{font-family:var(--fh);font-size:26px;font-weight:800;margin-bottom:4px;color:var(--txt);}
+.auth-subheading{font-size:13px;color:var(--txt3);margin-bottom:22px;}
+.auth-subheading a{color:var(--acc2);cursor:pointer;}
+.auth-fi{padding:13px 14px 13px 46px;font-size:15px;border-radius:12px;}
+.auth-iw svg{width:18px;height:18px;left:14px;}
+.auth-fg{margin-bottom:16px;}
+.auth-fl{font-size:12px;margin-bottom:6px;}
+.auth-fi.v-ok{border-color:#22c55e!important;box-shadow:0 0 0 3px rgba(34,197,94,.12)!important;}
+.auth-fi.v-err{border-color:#ef4444!important;box-shadow:0 0 0 3px rgba(239,68,68,.12)!important;}
+.v-msg{font-size:12px;margin-top:5px;display:flex;align-items:center;gap:4px;min-height:18px;}
+.v-msg.ok{color:#22c55e;}.v-msg.err{color:#ef4444;}
+.pw-bars{display:flex;gap:4px;margin-top:7px;}
+.pw-bar{flex:1;height:4px;border-radius:2px;background:var(--surf2);transition:background .3s;}
+.pw-lbl{font-size:11px;margin-top:3px;color:var(--txt3);}
+.auth-btn{padding:14px;font-size:16px;border-radius:13px;}
+.auth-opts{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;}
+.auth-rem{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--txt2);cursor:pointer;}
+.auth-rem input{accent-color:var(--acc);width:15px;height:15px;}
+.auth-forgot{font-size:13px;color:var(--acc2);cursor:pointer;}
+.auth-forgot:hover{text-decoration:underline;}
+.eye-btn{position:absolute;right:13px;top:50%;transform:translateY(-50%);cursor:pointer;font-size:16px;user-select:none;background:none;border:none;padding:0;}
+.role-grid{grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;}
+.role-opt{padding:13px 7px;border-radius:12px;}
+.role-ic{font-size:22px;margin-bottom:5px;}
+.role-nm{font-size:12px;}
+.stage-wrap{display:flex;flex-direction:column;align-items:center;}
+.stage-labels{display:flex;margin-bottom:20px;gap:0;}
+.sl-item{width:36px;text-align:center;font-size:11px;color:var(--txt3);}
+.sl-gap{width:54px;}
+.demo-grid{display:grid;grid-template-columns:auto auto;gap:2px 14px;font-size:12px;}
+</style>
+</head>
+<body>
+<canvas id="galaxy-canvas"></canvas>
+<div class="cursor-dot"></div><div class="cursor-ring"></div>
+<div class="auth-top-bar">
+  <button class="tb-btn theme-toggle-btn" onclick="Theme.toggle()">☀️</button>
+</div>
+<div class="auth-success" id="auth-success">
+  <div class="succ-ic">✓</div>
+  <div class="succ-title" id="succ-title">Welcome back!</div>
+  <div class="succ-sub" id="succ-sub">Redirecting to your dashboard…</div>
+  <div class="succ-bar"><div class="succ-fill" id="succ-fill"></div></div>
+</div>
+<div class="auth-page">
+  <div class="auth-left">
+    <div class="al-logo"><div class="al-mark">💼</div><div class="al-name">VCMS<span>Pro</span></div></div>
+    <h1 class="al-title">Enterprise Contract<br><span class="grad">Intelligence Platform</span></h1>
+    <p class="al-sub">One unified workspace for vendors, contracts, invoices, compliance and AI-powered risk analysis — with personalized dashboards for every role.</p>
+    <div class="al-feats">
+      <div class="al-fi"><div class="al-icon" style="background:rgba(124,58,237,.15)">🎭</div><div class="al-ft"><strong>6 Role-Based Dashboards</strong> — Admin, Manager, Legal, Finance, Auditor, Viewer</div></div>
+      <div class="al-fi"><div class="al-icon" style="background:rgba(168,85,247,.15)">✦</div><div class="al-ft"><strong>Claude AI Assistant</strong> — real-time risk analysis and clause detection</div></div>
+      <div class="al-fi"><div class="al-icon" style="background:rgba(16,185,129,.15)">🛡️</div><div class="al-ft"><strong>Compliance Center</strong> — GDPR, ISO 27001, SOC 2, PCI DSS monitoring</div></div>
+      <div class="al-fi"><div class="al-icon" style="background:rgba(245,158,11,.15)">💰</div><div class="al-ft"><strong>Multi-currency Invoicing</strong> — ₹ INR default + 9 global currencies</div></div>
+      <div class="al-fi"><div class="al-icon" style="background:rgba(56,189,248,.15)">🌐</div><div class="al-ft"><strong>10 Languages</strong> — EN, हिंदी, தமிழ், عربي, FR, ES, DE, 日本語, 中文, PT</div></div>
+    </div>
+    <div class="al-stats">
+      <div class="al-stat"><div class="als-val">6</div><div class="als-lbl">Role Dashboards</div></div>
+      <div class="al-stat"><div class="als-val">13</div><div class="als-lbl">Modules</div></div>
+    </div>
+  </div>
+  <div class="auth-right">
+    <div class="auth-box">
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tab-login" onclick="showTab('login')">Sign In</button>
+        <button class="auth-tab" id="tab-reg" onclick="showTab('register')">Create Account</button>
+      </div>
+      <!-- LOGIN -->
+      <div id="login-panel">
+        <div class="auth-heading">Welcome back 👋</div>
+        <div class="auth-subheading">No account? <a onclick="showTab('register')">Create one free →</a></div>
+        <div class="auth-err" id="login-err"></div>
+        <div class="auth-fg">
+          <label class="auth-fl">EMAIL ADDRESS <span style="color:var(--err)">*</span></label>
+          <div class="auth-iw"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
+            <input class="auth-fi" type="text" id="l-email" placeholder="yourname@company.com" oninput="vEmail(this,'l-em-msg')" autocomplete="email">
+          </div>
+          <div class="v-msg" id="l-em-msg"></div>
+        </div>
+        <div class="auth-fg">
+          <label class="auth-fl">PASSWORD <span style="color:var(--err)">*</span></label>
+          <div class="auth-iw" style="position:relative"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/></svg>
+            <input class="auth-fi" type="password" id="l-pass" placeholder="Enter your password" autocomplete="current-password">
+            <button class="eye-btn" onclick="togglePw('l-pass',this)">👁</button>
+          </div>
+        </div>
+        <div class="auth-opts">
+          <label class="auth-rem"><input type="checkbox" checked> Remember me</label>
+          <a class="auth-forgot">Forgot password?</a>
+        </div>
+        <button class="auth-btn" id="login-btn" onclick="doLogin()">
+          <span id="lbt">Sign In to Dashboard</span>
+          <span id="lsp" class="spinner" style="display:none;width:16px;height:16px;border-width:2px"></span>
+        </button>
+        <div class="demo-box" style="margin-top:20px">
+          <div class="demo-t">🔑 Demo Accounts — Password: <strong style="color:var(--acc2)">admin123</strong></div>
+          <div class="demo-c" style="margin-top:8px">
+            <div class="demo-grid">
+              <span style="color:var(--txt3)">Admin:</span><span onclick="fillDemo('admin@vcms.com')" style="color:var(--acc2);cursor:pointer;text-decoration:underline">admin@vcms.com</span>
+              <span style="color:var(--txt3)">Manager:</span><span onclick="fillDemo('manager@vcms.com')" style="color:var(--acc2);cursor:pointer;text-decoration:underline">manager@vcms.com</span>
+              <span style="color:var(--txt3)">Legal:</span><span onclick="fillDemo('legal@vcms.com')" style="color:var(--acc2);cursor:pointer;text-decoration:underline">legal@vcms.com</span>
+              <span style="color:var(--txt3)">Finance:</span><span onclick="fillDemo('finance@vcms.com')" style="color:var(--acc2);cursor:pointer;text-decoration:underline">finance@vcms.com</span>
+              <span style="color:var(--txt3)">Auditor:</span><span onclick="fillDemo('auditor@vcms.com')" style="color:var(--acc2);cursor:pointer;text-decoration:underline">auditor@vcms.com</span>
+              <span style="color:var(--txt3)">Viewer:</span><span onclick="fillDemo('viewer@vcms.com')" style="color:var(--acc2);cursor:pointer;text-decoration:underline">viewer@vcms.com</span>
+            </div>
+            <div style="margin-top:7px;font-size:11px;color:var(--txt3)">👆 Click any email to auto-fill</div>
+          </div>
+        </div>
+      </div>
+      <!-- REGISTER -->
+      <div id="register-panel" style="display:none">
+        <div class="auth-heading">Create Account</div>
+        <div class="auth-subheading">Have an account? <a onclick="showTab('login')">Sign in →</a></div>
+        <div class="stage-wrap">
+          <div class="stage-indicator">
+            <div class="stage-step"><div class="stage-dot active" id="sdot-1">1</div></div>
+            <div class="stage-line" id="sline-1"></div>
+            <div class="stage-step"><div class="stage-dot" id="sdot-2">2</div></div>
+            <div class="stage-line" id="sline-2"></div>
+            <div class="stage-step"><div class="stage-dot" id="sdot-3">3</div></div>
+          </div>
+          <div class="stage-labels">
+            <div class="sl-item" style="font-size:11px">Role</div>
+            <div class="sl-gap"></div>
+            <div class="sl-item" style="font-size:11px">Details</div>
+            <div class="sl-gap"></div>
+            <div class="sl-item" style="font-size:11px">Confirm</div>
+          </div>
+        </div>
+        <div class="auth-err" id="reg-err"></div>
+        <!-- Stage 1 -->
+        <div id="stage-1">
+          <div style="font-family:var(--fh);font-size:17px;font-weight:700;margin-bottom:4px">Choose Your Role</div>
+          <div style="font-size:13px;color:var(--txt3);margin-bottom:14px">Each role gets a customized dashboard for their specific work</div>
+          <div class="role-grid">
+            <div class="role-opt sel" onclick="selRole(this,'admin')"><div class="role-ic">👔</div><div class="role-nm">Admin</div></div>
+            <div class="role-opt" onclick="selRole(this,'manager')"><div class="role-ic">📋</div><div class="role-nm">Manager</div></div>
+            <div class="role-opt" onclick="selRole(this,'legal')"><div class="role-ic">⚖️</div><div class="role-nm">Legal</div></div>
+            <div class="role-opt" onclick="selRole(this,'finance')"><div class="role-ic">💰</div><div class="role-nm">Finance</div></div>
+            <div class="role-opt" onclick="selRole(this,'auditor')"><div class="role-ic">🔍</div><div class="role-nm">Auditor</div></div>
+            <div class="role-opt" onclick="selRole(this,'viewer')"><div class="role-ic">👁️</div><div class="role-nm">Viewer</div></div>
+          </div>
+          <div id="role-desc" style="background:rgba(124,58,237,.08);border:1px solid var(--bdr);border-radius:11px;padding:11px 14px;font-size:13px;color:var(--txt2);margin-bottom:16px;line-height:1.55"></div>
+          <button class="auth-btn" onclick="goStage(2)">Continue — Account Details →</button>
+        </div>
+        <!-- Stage 2 -->
+        <div id="stage-2" style="display:none">
+          <div style="font-family:var(--fh);font-size:17px;font-weight:700;margin-bottom:16px">Your Account Details</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+            <div class="auth-fg" style="margin:0">
+              <label class="auth-fl">FIRST NAME <span style="color:var(--err)">*</span></label>
+              <div class="auth-iw"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/></svg>
+                <input class="auth-fi" type="text" id="r-first" placeholder="Priya" oninput="vName(this,'r-fn-msg','First name')">
+              </div>
+              <div class="v-msg" id="r-fn-msg"></div>
+            </div>
+            <div class="auth-fg" style="margin:0">
+              <label class="auth-fl">LAST NAME <span style="color:var(--err)">*</span></label>
+              <div class="auth-iw"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/></svg>
+                <input class="auth-fi" type="text" id="r-last" placeholder="Sharma" oninput="vName(this,'r-ln-msg','Last name')">
+              </div>
+              <div class="v-msg" id="r-ln-msg"></div>
+            </div>
+          </div>
+          <div class="auth-fg">
+            <label class="auth-fl">WORK EMAIL <span style="color:var(--err)">*</span> <span style="color:var(--txt3);font-weight:400;text-transform:none;letter-spacing:0">(lowercase only)</span></label>
+            <div class="auth-iw"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
+              <input class="auth-fi" type="text" id="r-email" placeholder="yourname@company.com" oninput="vEmail(this,'r-em-msg')" autocomplete="off">
+            </div>
+            <div class="v-msg" id="r-em-msg"></div>
+          </div>
+          <div class="auth-fg">
+            <label class="auth-fl">DEPARTMENT</label>
+            <div class="auth-iw"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z" clip-rule="evenodd"/></svg>
+              <input class="auth-fi" type="text" id="r-dept" placeholder="Legal, Finance, Operations…">
+            </div>
+          </div>
+          <div class="auth-fg">
+            <label class="auth-fl">PASSWORD <span style="color:var(--err)">*</span> <span style="color:var(--txt3);font-weight:400;text-transform:none;letter-spacing:0">(min 8 chars, 1 uppercase, 1 number)</span></label>
+            <div class="auth-iw" style="position:relative"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/></svg>
+              <input class="auth-fi" type="password" id="r-pass" placeholder="e.g. MyPass123" oninput="vPw(this)">
+              <button class="eye-btn" onclick="togglePw('r-pass',this)">👁</button>
+            </div>
+            <div class="pw-bars"><div class="pw-bar" id="pb1"></div><div class="pw-bar" id="pb2"></div><div class="pw-bar" id="pb3"></div><div class="pw-bar" id="pb4"></div></div>
+            <div class="pw-lbl" id="pw-lbl"></div>
+            <div class="v-msg" id="r-pw-msg"></div>
+          </div>
+          <div class="auth-fg">
+            <label class="auth-fl">CONFIRM PASSWORD <span style="color:var(--err)">*</span></label>
+            <div class="auth-iw" style="position:relative"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/></svg>
+              <input class="auth-fi" type="password" id="r-pass2" placeholder="Repeat your password" oninput="vPw2(this)">
+              <button class="eye-btn" onclick="togglePw('r-pass2',this)">👁</button>
+            </div>
+            <div class="v-msg" id="r-pw2-msg"></div>
+          </div>
+          <div style="display:flex;gap:9px">
+            <button class="auth-btn" onclick="goStage(1)" style="background:var(--surf);color:var(--txt);border:1px solid var(--bdr);box-shadow:none;flex:0 0 auto;padding:14px 18px">← Back</button>
+            <button class="auth-btn" onclick="goStage(3)" style="flex:1">Review & Confirm →</button>
+          </div>
+        </div>
+        <!-- Stage 3 -->
+        <div id="stage-3" style="display:none">
+          <div style="font-family:var(--fh);font-size:17px;font-weight:700;margin-bottom:6px">Confirm Details</div>
+          <div style="font-size:13px;color:var(--txt3);margin-bottom:16px">Everything look right? Create your account below.</div>
+          <div id="confirm-summary" style="background:rgba(124,58,237,.08);border:1px solid rgba(168,85,247,.25);border-radius:13px;padding:16px 18px;margin-bottom:16px;font-size:14px;line-height:2.1"></div>
+          <div style="background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.2);border-radius:10px;padding:10px 13px;font-size:12px;color:var(--txt2);margin-bottom:16px">✅ By creating an account you agree to the Terms of Service and Privacy Policy.</div>
+          <div style="display:flex;gap:9px">
+            <button class="auth-btn" onclick="goStage(2)" style="background:var(--surf);color:var(--txt);border:1px solid var(--bdr);box-shadow:none;flex:0 0 auto;padding:14px 18px">← Back</button>
+            <button class="auth-btn" onclick="doRegister()" style="flex:1" id="reg-btn">
+              <span id="rbt">🎉 Create My Account</span>
+              <span id="rsp" class="spinner" style="display:none;width:16px;height:16px;border-width:2px"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="js/i18n.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/galaxy.js"></script>
+<script>
+if(localStorage.getItem('vcms_token'))window.location.href='dashboard.html';
+Theme.init();initCursor();
+// Theme and cursor init
+let regState={role:'admin',stage:1};
+const ROLE_DESC={
+  admin:'👔 Full system access — manage all users, vendors, contracts, invoices, compliance settings and every module in the platform.',
+  manager:'📋 Operations dashboard — approve workflows, manage your team contracts, onboard vendors and track project milestones.',
+  legal:'⚖️ Legal dashboard — review contracts awaiting approval, monitor compliance scores, manage legal documents and track expiry dates.',
+  finance:'💰 Finance dashboard — track all invoices, monitor payment status, view budget summaries and generate financial reports.',
+  auditor:'🔍 Audit dashboard — access audit trails, compliance reports, risk assessments and system activity. Read-only access.',
+  viewer:'👁️ Summary view — read-only access to key metrics, recent activity and high-level reports. No editing permissions.',
+};
+document.getElementById('role-desc').textContent=ROLE_DESC.admin;
+function showTab(t){
+  document.getElementById('tab-login').classList.toggle('active',t==='login');
+  document.getElementById('tab-reg').classList.toggle('active',t==='register');
+  document.getElementById('login-panel').style.display=t==='login'?'':'none';
+  document.getElementById('register-panel').style.display=t==='register'?'':'none';
+  if(t==='register')goStage(1);
+}
+function selRole(el,role){document.querySelectorAll('.role-opt').forEach(r=>r.classList.remove('sel'));el.classList.add('sel');regState.role=role;document.getElementById('role-desc').textContent=ROLE_DESC[role]||'';}
+function goStage(n){
+  if(n===3){
+    const fn=document.getElementById('r-first').value.trim(),ln=document.getElementById('r-last').value.trim(),em=document.getElementById('r-email').value.trim(),pw=document.getElementById('r-pass').value,pw2=document.getElementById('r-pass2').value;
+    const errs=[];
+    if(!fn||fn.length<2)errs.push('First name must be at least 2 characters');
+    if(/\d/.test(fn))errs.push('First name cannot contain numbers');
+    if(!ln)errs.push('Last name is required');
+    if(/\d/.test(ln))errs.push('Last name cannot contain numbers');
+    if(!em||em!==em.toLowerCase())errs.push('Email must be in lowercase only — no capital letters');
+    if(!/^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$/.test(em))errs.push('Enter a valid email (e.g. name@company.com)');
+    if(!pw||pw.length<8)errs.push('Password must be at least 8 characters');
+    if(!/[A-Z]/.test(pw))errs.push('Password needs at least one uppercase letter');
+    if(!/[0-9]/.test(pw))errs.push('Password needs at least one number');
+    if(pw!==pw2)errs.push('Passwords do not match');
+    const errEl=document.getElementById('reg-err');
+    if(errs.length){errEl.innerHTML=errs.map(e=>`⚠ ${e}`).join('<br>');errEl.classList.add('show');return;}
+    errEl.classList.remove('show');
+    const rl={admin:'👔 Admin',manager:'📋 Manager',legal:'⚖️ Legal',finance:'💰 Finance',auditor:'🔍 Auditor',viewer:'👁️ Viewer'};
+    document.getElementById('confirm-summary').innerHTML=`<div style="display:grid;grid-template-columns:110px 1fr;gap:2px 0"><span style="color:var(--txt3)">Name</span><span style="font-weight:600">${fn} ${ln}</span><span style="color:var(--txt3)">Email</span><span style="color:var(--acc2)">${em}</span><span style="color:var(--txt3)">Role</span><span>${rl[regState.role]}</span><span style="color:var(--txt3)">Department</span><span>${document.getElementById('r-dept').value||'—'}</span><span style="color:var(--txt3)">Password</span><span style="color:var(--txt3)">●●●●●●●●</span></div>`;
+  }
+  regState.stage=n;
+  ['stage-1','stage-2','stage-3'].forEach((id,i)=>{document.getElementById(id).style.display=(i+1===n)?'':'none';});
+  [1,2,3].forEach(i=>{const d=document.getElementById(`sdot-${i}`);d.classList.remove('active','done');if(i<n){d.classList.add('done');d.textContent='✓';}else if(i===n){d.classList.add('active');d.textContent=i;}else d.textContent=i;});
+  [1,2].forEach(i=>document.getElementById(`sline-${i}`).classList.toggle('done',i<n));
+}
+function setMsg(id,text,type){const el=document.getElementById(id);if(!el)return;el.className=`v-msg ${type}`;el.innerHTML=text?`<span>${type==='ok'?'✓':'✗'}</span> ${text}`:'';} 
+function vName(inp,mid,lbl){const v=inp.value;if(!v){inp.className='auth-fi';setMsg(mid,'','');return;}if(/\d/.test(v)){inp.className='auth-fi v-err';setMsg(mid,`${lbl} cannot contain numbers`,'err');return;}if(/[^a-zA-Z\s\-']/.test(v)){inp.className='auth-fi v-err';setMsg(mid,`${lbl} — letters only`,'err');return;}if(v.trim().length<2){inp.className='auth-fi v-err';setMsg(mid,`${lbl} must be at least 2 characters`,'err');return;}inp.className='auth-fi v-ok';setMsg(mid,`${lbl} looks good`,'ok');}
+function vEmail(inp,mid){const v=inp.value;if(!v){inp.className='auth-fi';setMsg(mid,'','');return;}if(v!==v.toLowerCase()){inp.className='auth-fi v-err';setMsg(mid,'Email must be lowercase — no capital letters allowed','err');return;}if(!/^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$/.test(v)){inp.className='auth-fi v-err';setMsg(mid,'Enter a valid email address (e.g. name@company.com)','err');return;}inp.className='auth-fi v-ok';setMsg(mid,'Valid email address ✓','ok');}
+function vPw(inp){const v=inp.value;let s=0;if(v.length>=8)s++;if(v.length>=12)s++;if(/[A-Z]/.test(v)&&/[a-z]/.test(v))s++;if(/[0-9]/.test(v)&&/[^a-zA-Z0-9]/.test(v))s++;const cols=['#ef4444','#f59e0b','#f59e0b','#22c55e','#22c55e'];const labs=['','Weak','Fair','Good','Strong'];['pb1','pb2','pb3','pb4'].forEach((id,i)=>{document.getElementById(id).style.background=i<s?cols[s]:'var(--surf2)';});const lbl=document.getElementById('pw-lbl');lbl.textContent=v?`Strength: ${labs[s]||'Weak'}`:'';lbl.style.color=cols[s]||'var(--txt3)';const errs=[];if(v.length<8)errs.push('min 8 chars');if(!/[A-Z]/.test(v))errs.push('1 uppercase');if(!/[0-9]/.test(v))errs.push('1 number');if(errs.length){inp.className='auth-fi v-err';setMsg('r-pw-msg','Needs: '+errs.join(', '),'err');}else{inp.className='auth-fi v-ok';setMsg('r-pw-msg','Password is strong ✓','ok');}if(document.getElementById('r-pass2').value)vPw2(document.getElementById('r-pass2'));}
+function vPw2(inp){const pw=document.getElementById('r-pass').value;if(!inp.value){inp.className='auth-fi';setMsg('r-pw2-msg','','');return;}if(inp.value!==pw){inp.className='auth-fi v-err';setMsg('r-pw2-msg','Passwords do not match','err');}else{inp.className='auth-fi v-ok';setMsg('r-pw2-msg','Passwords match ✓','ok');}}
+function togglePw(id,btn){const i=document.getElementById(id);if(i.type==='password'){i.type='text';btn.textContent='🙈';}else{i.type='password';btn.textContent='👁';}}
+function fillDemo(email){document.getElementById('l-email').value=email;document.getElementById('l-pass').value='admin123';vEmail(document.getElementById('l-email'),'l-em-msg');}
+async function doLogin(){
+  const email=document.getElementById('l-email').value.trim(),pass=document.getElementById('l-pass').value;
+  const err=document.getElementById('login-err'),btn=document.getElementById('login-btn'),sp=document.getElementById('lsp'),tx=document.getElementById('lbt');
+  err.classList.remove('show');
+  if(!email){err.textContent='Email address is required';err.classList.add('show');return;}
+  if(email!==email.toLowerCase()){err.textContent='Email must be in lowercase — no capital letters';err.classList.add('show');return;}
+  if(!/^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$/.test(email)){err.textContent='Please enter a valid email address';err.classList.add('show');return;}
+  if(!pass){err.textContent='Password is required';err.classList.add('show');return;}
+  btn.disabled=true;sp.style.display='inline-block';tx.style.display='none';
+  try{
+    const data=await Api.login({email,password:pass});
+    localStorage.setItem('vcms_token',data.token);localStorage.setItem('vcms_user',JSON.stringify(data.user));
+    document.getElementById('succ-title').textContent=`Welcome back, ${data.user.first_name}!`;
+    document.getElementById('succ-sub').textContent=`Loading your ${data.user.role} dashboard…`;
+    document.getElementById('auth-success').classList.add('show');
+    setTimeout(()=>document.getElementById('succ-fill').style.width='100%',80);
+    setTimeout(()=>window.location.href='dashboard.html',2000);
+  }catch(e){sp.style.display='none';tx.style.display='';btn.disabled=false;err.textContent=e.error||'Login failed. Please check your credentials.';err.classList.add('show');}
+}
+async function doRegister(){
+  const fn=document.getElementById('r-first').value.trim(),ln=document.getElementById('r-last').value.trim(),em=document.getElementById('r-email').value.trim(),dp=document.getElementById('r-dept').value.trim(),pw=document.getElementById('r-pass').value;
+  const btn=document.getElementById('reg-btn'),sp=document.getElementById('rsp'),tx=document.getElementById('rbt'),err=document.getElementById('reg-err');
+  err.classList.remove('show');btn.disabled=true;sp.style.display='inline-block';tx.style.display='none';
+  try{
+    const data=await Api.register({first_name:fn,last_name:ln,email:em,password:pw,role:regState.role,department:dp});
+    localStorage.setItem('vcms_token',data.token);localStorage.setItem('vcms_user',JSON.stringify(data.user));
+    document.getElementById('succ-title').textContent=`Welcome, ${data.user.first_name}! 🎉`;
+    document.getElementById('succ-sub').textContent=`Setting up your ${data.user.role} dashboard…`;
+    document.getElementById('auth-success').classList.add('show');
+    setTimeout(()=>document.getElementById('succ-fill').style.width='100%',80);
+    setTimeout(()=>window.location.href='dashboard.html',2200);
+  }catch(e){sp.style.display='none';tx.style.display='';btn.disabled=false;const errs=e.errors||[e.error||'Registration failed'];err.innerHTML=errs.map(e=>`⚠ ${e}`).join('<br>');err.classList.add('show');}
+}
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&document.getElementById('login-panel').style.display!=='none')doLogin();});
+</script>
+</body>
+</html>
