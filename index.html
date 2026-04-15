@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VCMS Pro — Vendor Contract Management</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<canvas id="galaxy-canvas"></canvas>
+<div class="cursor-dot"></div><div class="cursor-ring"></div>
+<div class="lp">
+
+  <!-- NAV -->
+  <nav class="lp-nav">
+    <div class="lp-logo-wrap">
+      <div class="lp-mark">💼</div>
+      <div class="lp-brand">VCMS<span>Pro</span></div>
+    </div>
+    <button class="tb-btn theme-toggle-btn" onclick="Theme.toggle()" title="Toggle theme">☀️</button>
+    <a href="login.html" class="btn btn-secondary btn-sm">Sign In</a>
+    <a href="login.html" class="btn btn-primary btn-sm">Get Started →</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="lp-hero lp-hero-bg">
+    <!-- Floating glass cards - decorative -->
+    <div style="position:absolute;top:18%;right:6%;animation:floatA 6s ease-in-out infinite;opacity:.75">
+      <div style="background:var(--glass2);backdrop-filter:var(--blur-md);border:1px solid var(--bdr2);border-radius:16px;padding:14px 18px;min-width:160px;box-shadow:0 8px 32px rgba(0,0,0,.30)">
+        <div style="font-size:11px;color:var(--txt3);margin-bottom:4px;font-weight:600;letter-spacing:.5px">ACTIVE CONTRACTS</div>
+        <div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;background:linear-gradient(135deg,#c084fc,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">142</div>
+        <div style="font-size:11px;color:var(--ok);margin-top:2px">↑ 12% this month</div>
+      </div>
+    </div>
+    <div style="position:absolute;top:30%;left:4%;animation:floatB 7s ease-in-out infinite;opacity:.70">
+      <div style="background:var(--glass2);backdrop-filter:var(--blur-md);border:1px solid var(--bdr2);border-radius:16px;padding:14px 18px;min-width:155px;box-shadow:0 8px 32px rgba(0,0,0,.30)">
+        <div style="font-size:11px;color:var(--txt3);margin-bottom:4px;font-weight:600;letter-spacing:.5px">INVOICE VOLUME</div>
+        <div style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;background:linear-gradient(135deg,#34d399,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">₹24.6Cr</div>
+        <div style="font-size:11px;color:var(--txt3);margin-top:2px">FY 2024–25</div>
+      </div>
+    </div>
+    <div style="position:absolute;bottom:22%;right:4%;animation:floatC 8s ease-in-out infinite;opacity:.68">
+      <div style="background:var(--glass2);backdrop-filter:var(--blur-md);border:1px solid var(--bdr2);border-radius:16px;padding:14px 18px;min-width:155px;box-shadow:0 8px 32px rgba(0,0,0,.30)">
+        <div style="font-size:11px;color:var(--txt3);margin-bottom:4px;font-weight:600;letter-spacing:.5px">COMPLIANCE SCORE</div>
+        <div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;background:linear-gradient(135deg,#60a5fa,#3b82f6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">84%</div>
+        <div style="font-size:11px;color:var(--warn);margin-top:2px">4 issues open</div>
+      </div>
+    </div>
+
+    <div style="position:relative;z-index:2;text-align:center;">
+      <div class="lp-tag">✦ Enterprise Vendor & Contract Intelligence</div>
+      <h1 class="lp-h1">Your Contracts,<br><span class="grad">Brilliantly Managed</span></h1>
+      <p class="lp-sub" style="text-align:center;margin-left:auto;margin-right:auto;">End-to-end vendor lifecycle management with AI risk analysis, compliance monitoring, and role-based dashboards — built for Indian enterprises.</p>
+      <div class="lp-btns">
+        <a href="login.html" class="btn btn-primary btn-lg" style="padding:13px 28px;font-size:15px">🚀 Launch Dashboard</a>
+        <a href="login.html" class="btn btn-secondary btn-lg" style="padding:13px 28px;font-size:15px">🔑 Sign In</a>
+      </div>
+      <div class="lp-pill">
+        <span>🌐 10 Languages</span><span>💼 6 Role Dashboards</span><span>🤖 Claude AI</span>
+        <span>🛡️ GDPR · ISO · SOC2 · PCI</span><span>₹ INR Default</span><span>📊 Real-time Charts</span>
+      </div>
+      <div class="lp-stats">
+        <div><div class="lp-stat-val">6</div><div class="lp-stat-label">Custom Dashboards</div></div>
+        <div style="width:1px;background:var(--bdr);"></div>
+        <div><div class="lp-stat-val">13</div><div class="lp-stat-label">Feature Modules</div></div>
+        <div style="width:1px;background:var(--bdr);"></div>
+        <div><div class="lp-stat-val">100%</div><div class="lp-stat-label">Your Data, Your DB</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="lp-features">
+    <div class="lp-section-tag">
+      <div class="lp-tag">Features</div>
+      <h2 style="font-family:'Syne',sans-serif;font-size:34px;font-weight:800;margin-bottom:12px;color:var(--txt)">Everything your legal, finance<br>& ops teams need</h2>
+      <p style="font-size:15px;color:var(--txt2);max-width:500px;margin:0 auto">One platform, six role-tuned workspaces, real data from your PostgreSQL database.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="feat-icon">📄</div><div class="feat-title">Full Contract Lifecycle</div><div class="feat-desc">Draft → Review → Approve → Execute → Archive with auto-expiry alerts and renewal tracking.</div></div>
+      <div class="feat-card"><div class="feat-icon">🏢</div><div class="feat-title">Vendor Management</div><div class="feat-desc">Risk scoring, KYC tracking, category management, contact directory and performance metrics.</div></div>
+      <div class="feat-card"><div class="feat-icon">💰</div><div class="feat-title">Invoice & Payments</div><div class="feat-desc">Create invoices with GST, track overdue payments, mark paid instantly, generate PDFs.</div></div>
+      <div class="feat-card"><div class="feat-icon">📊</div><div class="feat-title">Role-Filtered Analytics</div><div class="feat-desc">Live Chart.js graphs — each role sees their own KPIs. Finance sees cash flow, Legal sees risk.</div></div>
+      <div class="feat-card"><div class="feat-icon">🤖</div><div class="feat-title">Claude AI Assistant</div><div class="feat-desc">Contract risk analysis, clause detection, compliance gaps and negotiation guidance via AI.</div></div>
+      <div class="feat-card"><div class="feat-icon">🛡️</div><div class="feat-title">Compliance Centre</div><div class="feat-desc">GDPR, ISO 27001, SOC 2, PCI DSS and HIPAA dashboards with open issue tracking.</div></div>
+      <div class="feat-card"><div class="feat-icon">📋</div><div class="feat-title">Immutable Audit Log</div><div class="feat-desc">Every create, update, delete and login recorded with user, timestamp and IP address.</div></div>
+      <div class="feat-card"><div class="feat-icon">🧾</div><div class="feat-title">Invoice Generator</div><div class="feat-desc">Professional invoice builder with live preview, GST calculation and direct database save.</div></div>
+      <div class="feat-card"><div class="feat-icon">⚙️</div><div class="feat-title">Workflow Automation</div><div class="feat-desc">Multi-stage approval pipelines with configurable automation rules and smart escalations.</div></div>
+    </div>
+  </section>
+
+  <!-- ROLES -->
+  <section class="lp-roles-section">
+    <div class="lp-section-tag" style="margin-bottom:30px">
+      <div class="lp-tag">Role-Based Access</div>
+      <h2 style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;margin-bottom:10px;color:var(--txt)">A personalised dashboard for every role</h2>
+      <p style="font-size:14px;color:var(--txt2)">Each user sees exactly what matters to their work — different charts, pages and permissions.</p>
+    </div>
+    <div class="roles-grid">
+      <div class="role-card"><div class="ri">👔</div><div class="rn">Admin</div><div class="rd">Full control — all modules, all data, all charts, system settings.</div></div>
+      <div class="role-card"><div class="ri">📋</div><div class="rn">Manager</div><div class="rd">Vendors, contracts, approval pipeline, operational analytics.</div></div>
+      <div class="role-card"><div class="ri">⚖️</div><div class="rn">Legal</div><div class="rd">Contract lifecycle, risk charts, compliance, document vault.</div></div>
+      <div class="role-card"><div class="ri">💰</div><div class="rn">Finance</div><div class="rd">Invoices, payment trends, cash flow charts, invoice generator.</div></div>
+      <div class="role-card"><div class="ri">🔍</div><div class="rn">Auditor</div><div class="rd">Read-only audit trails, activity charts, compliance reports.</div></div>
+      <div class="role-card"><div class="ri">👁️</div><div class="rn">Viewer</div><div class="rd">Summary metrics only — no edits, no sensitive data.</div></div>
+    </div>
+    <div style="text-align:center;margin-top:40px">
+      <a href="login.html" class="btn btn-primary btn-lg" style="padding:13px 32px;font-size:15px">Explore the Dashboard →</a>
+    </div>
+  </section>
+
+  <footer class="lp-footer">
+    <p>VCMS Pro v4 · Express · PostgreSQL · Claude AI · <span style="color:var(--acc2)">Made with ♥ for Indian enterprises</span></p>
+  </footer>
+</div>
+
+<style>
+@keyframes floatA{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-14px) rotate(1deg);}}
+@keyframes floatB{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-10px) rotate(-1deg);}}
+@keyframes floatC{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+</style>
+<script src="js/i18n.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/galaxy.js"></script>
+<script>Theme.init();initCursor();</script>
+</body>
+</html>
