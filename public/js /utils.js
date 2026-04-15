@@ -33,29 +33,28 @@ function initCursor() {
   const ring = document.querySelector('.cursor-ring');
   if (!dot || !ring) return;
   
-  // Set initial position to center of screen so it's not stuck at 0,0
+  // Initialize to center
   let tx = window.innerWidth / 2, ty = window.innerHeight / 2;
   let rx = tx, ry = ty;
   
-  // Ensure visibility
-  dot.style.display = 'block';
-  ring.style.display = 'block';
-  dot.style.opacity = '1';
-  ring.style.opacity = '1';
-
-  document.addEventListener('mousemove', e => { 
-    tx = e.clientX; 
-    ty = e.clientY; 
+  const updatePos = (x, y) => {
+    tx = x; 
+    ty = y;
     dot.style.left = tx + 'px'; 
-    dot.style.top = ty + 'px'; 
-  });
+    dot.style.top = ty + 'px';
+  };
 
-  document.addEventListener('mousedown', () => { 
-    ring.style.width = '14px'; 
-    ring.style.height = '14px'; 
-  });
+  // Attach to window for maximum reliability
+  window.addEventListener('mousemove', e => {
+    updatePos(e.clientX, e.clientY);
+  }, { passive: true });
 
-  document.addEventListener('mouseup', () => { 
+  // Handle clicks
+  window.addEventListener('mousedown', () => { 
+    ring.style.width = '16px'; 
+    ring.style.height = '16px'; 
+  });
+  window.addEventListener('mouseup', () => { 
     ring.style.width = '28px'; 
     ring.style.height = '28px'; 
   });
@@ -68,6 +67,9 @@ function initCursor() {
     requestAnimationFrame(raf); 
   };
   requestAnimationFrame(raf);
+  
+  // Initial call to set position
+  updatePos(tx, ty);
 }
 
 // ── API CLIENT ──────────────────────────────────────────────
