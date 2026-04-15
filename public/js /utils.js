@@ -29,47 +29,8 @@ const Theme = {
 
 // ── CURSOR ──────────────────────────────────────────────────
 function initCursor() {
-  const dot  = document.querySelector('.cursor-dot');
-  const ring = document.querySelector('.cursor-ring');
-  if (!dot || !ring) return;
-  
-  // Initialize to center
-  let tx = window.innerWidth / 2, ty = window.innerHeight / 2;
-  let rx = tx, ry = ty;
-  
-  const updatePos = (x, y) => {
-    tx = x; 
-    ty = y;
-    dot.style.left = tx + 'px'; 
-    dot.style.top = ty + 'px';
-  };
-
-  // Attach to window for maximum reliability
-  window.addEventListener('mousemove', e => {
-    updatePos(e.clientX, e.clientY);
-  }, { passive: true });
-
-  // Handle clicks
-  window.addEventListener('mousedown', () => { 
-    ring.style.width = '16px'; 
-    ring.style.height = '16px'; 
-  });
-  window.addEventListener('mouseup', () => { 
-    ring.style.width = '28px'; 
-    ring.style.height = '28px'; 
-  });
-
-  const raf = () => { 
-    rx += (tx - rx) * 0.15; 
-    ry += (ty - ry) * 0.15; 
-    ring.style.left = rx + 'px'; 
-    ring.style.top = ry + 'px'; 
-    requestAnimationFrame(raf); 
-  };
-  requestAnimationFrame(raf);
-  
-  // Initial call to set position
-  updatePos(tx, ty);
+  // Custom cursor disabled to restore standard browser cursor
+  return;
 }
 
 // ── API CLIENT ──────────────────────────────────────────────
@@ -225,3 +186,4 @@ function getFileIcon(mime) {
   if (m.includes('zip') || m.includes('compressed')) return '📦';
   return '📄';
 }
+
